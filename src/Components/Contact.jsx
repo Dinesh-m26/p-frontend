@@ -6,7 +6,7 @@ const ContactForm = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("")
     const [data, setData] = useState([])
-    const api = "https://portfoliobackend-sm8w.onrender.com"
+    const api = "https://portfoliobackend-t04d.onrender.com"
 
     const handleSubmit = async (e) => {
         e.preventDefault()
