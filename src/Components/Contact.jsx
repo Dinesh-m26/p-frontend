@@ -6,7 +6,7 @@ const ContactForm = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("")
     const [data, setData] = useState([])
-    const api = "http://localhost:3000"
+    const api = "https://portfoliobackend-sm8w.onrender.com"
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -31,7 +31,7 @@ const ContactForm = () => {
                 }
             }
         } catch (error) {
-            console.log("unable to post")
+            console.log({ message: error.message })
         }
 
 
