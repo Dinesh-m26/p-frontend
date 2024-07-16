@@ -4,37 +4,39 @@ const ContactForm = () => {
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("")
-    const [data, setData] = useState([])
-    const api = "https://portfoliobackend-t04d.onrender.com"
+    const [message, setMessage] = useState("");
+    const [data, setData] = useState([]);
+    const api = "https://backend-6jlt.onrender.com";
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         try {
             if (name.trim() !== "" && email.trim() !== "" && message.trim() !== "") {
                 const res = await fetch(api + '/form', {
                     method: "POST",
-                    headers:
-                    {
+                    headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ name, email, message })
-                }); if (res.ok) {
-                    console.log("res is ok ");
-                    setData([...data, { name, email, message }])
-                    setName(""),
-                        setEmail(""),
-                        setMessage("")
+                });
+                
+                if (res.ok) {
+                    const result = await res.json();
+                    console.log("Form submitted successfully", result);
+                    setData([...data, result]);
+                    setName("");
+                    setEmail("");
+                    setMessage("");
                 } else {
-                    console.log("not workking");
+                    console.log("Failed to submit form", res.status);
                 }
+            } else {
+                console.log("All fields are required");
             }
         } catch (error) {
-            console.log({ message: error.message })
+            console.log("Error submitting form", error);
         }
-
-
     }
 
     return (
